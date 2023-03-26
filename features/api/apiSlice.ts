@@ -1,5 +1,8 @@
 import type { RootState } from "@/store/store";
+import { IComment } from "@/types/comments";
 import { INotifications } from "@/types/notifications";
+import { IPost, IPostsResponse } from "@/types/posts";
+import { IUserInfo } from "@/types/userInfo";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const postsApi = createApi({
@@ -16,31 +19,31 @@ export const postsApi = createApi({
   }),
   tagTypes: ["Posts", "User", "Comments", "Notifications"],
   endpoints: (builder) => ({
-    getPublicPosts: builder.query({
+    getPublicPosts: builder.query<IPostsResponse, number>({
       query: (page) => `posts/all?page=${page}`,
       providesTags: ["Posts"],
     }),
-    getFollowingPosts: builder.query({
+    getFollowingPosts: builder.query<IPost[], void>({
       query: () => `posts/following/`,
       providesTags: ["Posts"],
     }),
-    getPrivatePosts: builder.query({
+    getPrivatePosts: builder.query<IPost[], void>({
       query: () => `posts/my/`,
       providesTags: ["Posts"],
     }),
-    getUserPosts: builder.query({
+    getUserPosts: builder.query<IPost[], number>({
       query: (id) => `user/${id}/posts/`,
       providesTags: ["Posts"],
     }),
-    getUserInfo: builder.query({
+    getUserInfo: builder.query<IUserInfo, number>({
       query: (id) => `user/${id}/`,
       providesTags: ["User"],
     }),
-    getCurrentUserInfo: builder.query({
+    getCurrentUserInfo: builder.query<IUserInfo, void>({
       query: () => `user/`,
       providesTags: ["User"],
     }),
-    getPostComments: builder.query({
+    getPostComments: builder.query<IComment[], number>({
       query: (id) => `posts/${id}/comments/`,
       providesTags: ["Comments"],
     }),
