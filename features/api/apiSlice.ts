@@ -1,4 +1,5 @@
 import type { RootState } from "@/store/store";
+import { INotifications } from "@/types/notifications";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const postsApi = createApi({
@@ -43,7 +44,7 @@ export const postsApi = createApi({
       query: (id) => `posts/${id}/comments/`,
       providesTags: ["Comments"],
     }),
-    getNotifications: builder.query({
+    getNotifications: builder.query<INotifications, void>({
       query: () => `my_notifications/`,
       providesTags: ["Notifications"],
     }),
