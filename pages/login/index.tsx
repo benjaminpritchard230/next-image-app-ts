@@ -10,6 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
 
+interface ITarget {
+  target: {
+    name: string;
+    value: string;
+  };
+}
+
 const LoginHome = (props: Props) => {
   const auth = useSelector((state: RootState) => state.auth);
 
@@ -20,7 +27,7 @@ const LoginHome = (props: Props) => {
     password: "",
   });
 
-  const handleChange = ({ target: { name, value } }) =>
+  const handleChange = ({ target: { name, value } }: ITarget) =>
     setFormState((prev) => ({ ...prev, [name]: value }));
 
   const handleLoginClick = async () => {
