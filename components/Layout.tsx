@@ -8,7 +8,7 @@ export default function Layout({ children }: any) {
   return (
     <>
       <Head>
-        <title>Next Movie Website</title>
+        <title>Next Image App</title>
         <meta name="Layout" content="Next Movie Website" />
         <link
           rel="apple-touch-icon"
