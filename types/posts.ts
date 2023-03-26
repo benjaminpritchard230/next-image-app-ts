@@ -1,7 +1,7 @@
 export interface IPostsResponse {
   count: number;
-  next: any;
-  previous: any;
+  next: number;
+  previous: number;
   results: IPost[];
 }
 

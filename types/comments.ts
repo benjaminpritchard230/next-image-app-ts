@@ -2,8 +2,8 @@ export interface IComment {
   id: number;
   author: string;
   post: number;
-  likes: any[];
-  liked_by: any[];
+  likes: number[];
+  liked_by: number[];
   body: string;
   created_on: string;
   user: number;
