@@ -19,7 +19,7 @@ export const postsApi = createApi({
   }),
   tagTypes: ["Posts", "User", "Comments", "Notifications"],
   endpoints: (builder) => ({
-    getPublicPosts: builder.query<IPostsResponse, number>({
+    getPublicPosts: builder.query<IPostsResponse, string>({
       query: (page) => `posts/all?page=${page}`,
       providesTags: ["Posts"],
     }),
