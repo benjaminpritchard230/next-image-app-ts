@@ -1,10 +1,17 @@
 import { IPost } from "@/types/posts";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
+import LikeButton from "./LikeButton";
 
 type Props = {
   post: IPost;
@@ -27,13 +34,16 @@ const PostCard = ({ post }: Props) => {
             style={{ height: "300px", width: "auto" }}
             component="img"
             image={`https://escooter230.pythonanywhere.com/${post.image_url}`}
-            alt="green iguana"
+            alt={post.caption}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
               {post.caption}
             </Typography>
           </CardContent>
+          <CardActions>
+            <LikeButton post={post} />
+          </CardActions>
         </Card>
       </Item>
     </Grid>
