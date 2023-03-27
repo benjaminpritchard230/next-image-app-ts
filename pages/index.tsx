@@ -1,11 +1,14 @@
 import PostCard from "@/components/PostCard";
-import { IPost } from "@/types/posts";
+import { IPost, IPostsResponse } from "@/types/posts";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
+import { GetStaticProps } from "next";
 import React from "react";
-type Props = {};
+type Props = {
+  data: IPostsResponse;
+};
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -15,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Homepage = (props: Props) => {
+const Homepage = ({ data }: Props) => {
   const testPost: IPost = {
     id: 3,
     author: "hprit",
@@ -31,11 +34,26 @@ const Homepage = (props: Props) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <PostCard post={testPost} />
+      <Grid container spacing={0}>
+        {data.results.map((post) => {
+          return <PostCard key={post.id} post={post} />;
+        })}
       </Grid>
     </Box>
   );
 };
 
 export default Homepage;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const res = await fetch(
+    `https://escooter230.pythonanywhere.com/posts/all?page=1`
+  );
+  const data: IPostsResponse = await res.json();
+  console.log(data, "data");
+  return {
+    props: {
+      data,
+    },
+  };
+};
