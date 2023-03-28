@@ -1,4 +1,5 @@
 import PostCard from "@/components/PostCard";
+import { useGetPublicPostsQuery } from "@/features/api/apiSlice";
 import { IPost, IPostsResponse } from "@/types/posts";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -6,54 +7,30 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import { GetStaticProps } from "next";
 import React from "react";
-type Props = {
-  data: IPostsResponse;
-};
+type Props = {};
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+const Homepage = ({}: Props) => {
+  const {
+    data: publicPostsData,
+    error,
+    isError,
+    isLoading,
+  } = useGetPublicPostsQuery("1", { refetchOnMountOrArgChange: true });
 
-const Homepage = ({ data }: Props) => {
-  const testPost: IPost = {
-    id: 3,
-    author: "hprit",
-    image_url: "/images/images/EPW005004.jpg",
-    comments: [5],
-    likes: [1],
-    liked_by: ["bprit"],
-    caption: "a really old photo",
-    created_on: "2023-03-23T22:45:44.344277Z",
-    public: true,
-    user: 2,
+  const displayImagePosts = () => {
+    if (!isLoading) {
+      return publicPostsData!.results.map((post) => (
+        <PostCard post={post} key={post.id} />
+      ));
+    }
   };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>
-        {data.results.map((post) => {
-          return <PostCard key={post.id} post={post} />;
-        })}
+        {displayImagePosts()}
       </Grid>
     </Box>
   );
 };
 
 export default Homepage;
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch(
-    `https://escooter230.pythonanywhere.com/posts/all?page=1`
-  );
-  const data: IPostsResponse = await res.json();
-  console.log(data, "data");
-  return {
-    props: {
-      data,
-    },
-  };
-};
