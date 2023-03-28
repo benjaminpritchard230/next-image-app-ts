@@ -1,10 +1,12 @@
 import { postsApi } from "@/features/api/apiSlice";
 import authReducer from "@/features/auth/authSlice";
+import newPostDialogReducer from "@/features/dialog/newPostDialogSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    newPostDialog: newPostDialogReducer,
     [postsApi.reducerPath]: postsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
