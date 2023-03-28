@@ -26,6 +26,7 @@ import {
   useGetPublicPostsQuery,
 } from "../features/api/apiSlice";
 import { setCredentials } from "../features/auth/authSlice";
+import NotificationsPopper from "./NotificationsPopper";
 
 type Props = {};
 
@@ -65,7 +66,9 @@ const Navbar = (props: Props) => {
     );
   };
 
-  const handleCloseNotificationsMenu = () => {
+  const handleCloseNotificationsMenu = (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
     setAnchorElNotifications(null);
   };
 
@@ -83,10 +86,6 @@ const Navbar = (props: Props) => {
     isError,
     isLoading,
   } = useGetNotificationsQuery();
-
-  if (notificationsData) {
-    console.log(notificationsData);
-  }
 
   const notificationsCount = notificationsData
     ? notificationsData.filter((obj) => obj.unread === true).length
@@ -129,6 +128,11 @@ const Navbar = (props: Props) => {
             }}
           >
             Image
+          </Typography>
+          <Typography>
+            {auth.id}
+            {auth.username}
+            {auth.token}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -291,6 +295,14 @@ const Navbar = (props: Props) => {
           </Box>
         </Toolbar>
       </Container>
+      {token.length > 0 ? (
+        <NotificationsPopper
+          handleOpenNotificationsMenu={handleOpenNotificationsMenu}
+          handleCloseNotificationsMenu={handleCloseNotificationsMenu}
+          anchorElNotifications={anchorElNotifications}
+          setAnchorElNotifications={setAnchorElNotifications}
+        />
+      ) : null}
     </AppBar>
   );
 };
