@@ -1,3 +1,4 @@
+import MyDropzone from "@/components/MyDropzone";
 import { openClose } from "@/features/dialog/newPostDialogSlice";
 import { RootState } from "@/store/store";
 import CloseIcon from "@mui/icons-material/Close";
@@ -85,24 +86,7 @@ const NewPostDialog = (props: Props) => {
               variant="standard"
             />
 
-            {/* <MyDropzone
-                inputProps={{
-                  id: "image_url",
-                  label: "image",
-                  name: "image_url",
-                }}
-                accept={{
-                  "image/png": [".png", ".jpeg", ".jpg", ".webp"],
-                }}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <section>
-                    <div {...getRootProps()}>
-                      <input {...getInputProps()} />
-                    </div>
-                  </section>
-                )}
-              </MyDropzone> */}
+            <MyDropzone />
           </DialogContent>
           <DialogActions>
             <Button type="submit">Create post</Button>
