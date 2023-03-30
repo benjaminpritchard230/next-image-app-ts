@@ -2,13 +2,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface AuthState {
-  id: string;
+  id: number;
   token: string;
   username: string;
 }
 
 const initialState: AuthState = {
-  id: "",
+  id: NaN,
   token: "",
   username: "",
 };
