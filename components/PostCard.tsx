@@ -15,6 +15,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
+import TogglePrivateSwitch from "./TogglePrivateSwitch";
 
 type Props = {
   post: IPost;
@@ -48,6 +49,7 @@ const PostCard = ({ post }: Props) => {
           </CardContent>
           <CardActions>
             <LikeButton post={post} />
+            {post.user === auth.id ? <TogglePrivateSwitch post={post} /> : null}
             {post.user === auth.id ? <DeletePostButton post={post} /> : null}
           </CardActions>
         </Card>
