@@ -5,14 +5,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
+import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { useEditUserProfileMutation } from "../features/api/apiSlice";
 
 import MyDropzone from "./MyDropzone";
 
 type Props = {
-  editUserAvatarDialog: any;
-  setEditUserAvatarDialog: any;
+  editUserAvatarDialog: boolean;
+  setEditUserAvatarDialog: Dispatch<SetStateAction<boolean>>;
 };
 
 const EditUserAvatarDialog = ({
