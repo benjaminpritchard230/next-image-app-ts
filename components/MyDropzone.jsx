@@ -33,12 +33,7 @@ const img = {
   height: "100%",
 };
 
-function MyDropzone() {
-  const inputProps = {
-    id: "image_url",
-    label: "image",
-    name: "image_url",
-  };
+function MyDropzone({ inputProps }) {
   const accept = {
     "image/png": [".png", ".jpeg", ".jpg", ".webp"],
   };

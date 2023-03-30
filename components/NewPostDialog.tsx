@@ -86,7 +86,13 @@ const NewPostDialog = (props: Props) => {
               variant="standard"
             />
 
-            <MyDropzone />
+            <MyDropzone
+              inputProps={{
+                id: "image_url",
+                label: "image",
+                name: "image_url",
+              }}
+            />
           </DialogContent>
           <DialogActions>
             <Button type="submit">Create post</Button>
