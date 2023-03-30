@@ -22,7 +22,7 @@ type Props = {
 };
 
 const PrivateUserCard = ({ userInfoData }: Props) => {
-  TimeAgo.addDefaultLocale(en);
+  TimeAgo.addLocale(en);
 
   const [editUserProfileDialog, setEditUserProfileDialog] = useState(false);
   const [editUserAvatarDialog, setEditUserAvatarDialog] = useState(false);
