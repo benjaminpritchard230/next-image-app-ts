@@ -69,7 +69,13 @@ const EditUserAvatarDialog = ({
             <CloseIcon />
           </IconButton>
           <DialogContent>
-            <MyDropzone />
+            <MyDropzone
+              inputProps={{
+                id: "profile_image",
+                label: "image",
+                name: "profile_image",
+              }}
+            />
           </DialogContent>
           <DialogActions>
             <Button type="submit">Edit profile</Button>
