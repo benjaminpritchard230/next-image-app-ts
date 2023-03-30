@@ -1,9 +1,9 @@
 import { RootState } from "@/store/store";
 import { IPost } from "@/types/posts";
-import { FormControlLabel, FormGroup } from "@mui/material";
+import { FormControlLabel, FormGroup, Typography } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMakePrivateMutation } from "../features/api/apiSlice";
 
@@ -14,11 +14,9 @@ const TogglePrivateSwitch = ({ post }: Props) => {
 
   const auth = useSelector((state: RootState) => state.auth);
 
-  const [checked, setChecked] = useState(post.public === true ? false : true);
   const [makePrivate, { isLoading }] = useMakePrivateMutation();
 
   const handleChange = async () => {
-    // setChecked(!checked);
     try {
       await makePrivate(post).unwrap();
       console.log(post.public);
@@ -33,7 +31,7 @@ const TogglePrivateSwitch = ({ post }: Props) => {
         label={"Private"}
         control={
           <Switch
-            checked={checked}
+            checked={post.public ? false : true}
             onChange={handleChange}
             inputProps={{ "aria-label": "controlled" }}
           />
