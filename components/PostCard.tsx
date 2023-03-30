@@ -1,3 +1,4 @@
+import { RootState } from "@/store/store";
 import { IPost } from "@/types/posts";
 import {
   Card,
@@ -11,6 +12,8 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
+import { useSelector } from "react-redux";
+import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
 
 type Props = {
@@ -26,6 +29,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const PostCard = ({ post }: Props) => {
+  const auth = useSelector((state: RootState) => state.auth);
+
   return (
     <Grid xs={12} md={6} lg={4}>
       <Item sx={{ m: 0.5 }}>
@@ -43,6 +48,7 @@ const PostCard = ({ post }: Props) => {
           </CardContent>
           <CardActions>
             <LikeButton post={post} />
+            {post.user === auth.id ? <DeletePostButton post={post} /> : null}
           </CardActions>
         </Card>
       </Item>
