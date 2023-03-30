@@ -256,7 +256,7 @@ const Navbar = (props: Props) => {
                       key={"sftgvdbdfjghd"}
                       onClick={() => {
                         handleCloseUserMenu();
-                        router.push("/private");
+                        router.push("/my-profile");
                       }}
                     >
                       <Typography textAlign="center">My profile</Typography>
