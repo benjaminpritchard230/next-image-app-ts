@@ -35,7 +35,7 @@ export const postsApi = createApi({
       query: (id) => `user/${id}/posts/`,
       providesTags: ["Posts"],
     }),
-    getUserInfo: builder.query<IUserInfo, number>({
+    getUserInfo: builder.query<IUserInfo, string>({
       query: (id) => `user/${id}/`,
       providesTags: ["User"],
     }),
