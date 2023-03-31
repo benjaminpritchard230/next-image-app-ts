@@ -9,6 +9,6 @@ export interface IUserInfo {
   is_active: boolean;
   date_joined: string;
   profile_image: string;
-  about_me?: string;
-  location?: string;
+  about_me: string | null;
+  location: string | null;
 }
