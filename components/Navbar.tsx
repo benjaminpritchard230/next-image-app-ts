@@ -22,11 +22,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postsApi,
+  useGetCurrentUserInfoQuery,
   useGetNotificationsQuery,
   useGetPublicPostsQuery,
 } from "../features/api/apiSlice";
 import { setCredentials } from "../features/auth/authSlice";
 import NotificationsPopper from "./NotificationsPopper";
+import UserAvatar from "./UserAvatar";
 
 type Props = {};
 
@@ -37,6 +39,7 @@ const Navbar = (props: Props) => {
   const token = auth.token;
   const username = auth.username;
   const router = useRouter();
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [anchorElNotifications, setAnchorElNotifications] =
@@ -223,14 +226,7 @@ const Navbar = (props: Props) => {
             ) : null}
             <Tooltip title={username ? `User settings for ${username}` : ""}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {token.length > 0 ? (
-                  <Avatar
-                    src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                    alt="user-avatar"
-                  />
-                ) : (
-                  <Avatar />
-                )}
+                {token.length > 0 ? <UserAvatar /> : <Avatar />}
               </IconButton>
             </Tooltip>
             <Menu
