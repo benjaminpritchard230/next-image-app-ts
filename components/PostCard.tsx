@@ -11,8 +11,12 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import ReactTimeAgo from "react-time-ago";
 import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
 import TogglePrivateSwitch from "./TogglePrivateSwitch";
@@ -30,8 +34,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const PostCard = ({ post }: Props) => {
+  TimeAgo.addLocale(en);
   const auth = useSelector((state: RootState) => state.auth);
-
+  const capitalizeString = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
   return (
     <Grid xs={12} md={6} lg={4}>
       <Item sx={{ m: 0.5 }}>
@@ -44,7 +51,11 @@ const PostCard = ({ post }: Props) => {
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {post.caption}
+              &quot;{capitalizeString(post.caption)}&quot; posted by{" "}
+              <Link href={`/user/${post.user}`}>
+                {capitalizeString(post.author)}
+              </Link>{" "}
+              <ReactTimeAgo date={Date.parse(post.created_on)} />
             </Typography>
           </CardContent>
           <CardActions>
