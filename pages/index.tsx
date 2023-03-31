@@ -1,5 +1,8 @@
 import PostCard from "@/components/PostCard";
-import { useGetPublicPostsQuery } from "@/features/api/apiSlice";
+import {
+  useGetCurrentUserInfoQuery,
+  useGetPublicPostsQuery,
+} from "@/features/api/apiSlice";
 import { IPost, IPostsResponse } from "@/types/posts";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -24,6 +27,8 @@ const Homepage = ({}: Props) => {
       ));
     }
   };
+  const { data: currentUserInfoData } = useGetCurrentUserInfoQuery();
+  console.log(currentUserInfoData);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>

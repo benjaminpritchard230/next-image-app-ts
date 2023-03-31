@@ -79,7 +79,7 @@ export const postsApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      // invalidatesTags: ["Posts", "User", "Notifications"],
+      invalidatesTags: ["User"],
     }),
     register: builder.mutation({
       query: (credentials) => ({

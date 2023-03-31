@@ -16,12 +16,7 @@ type Props = {};
 
 const MyProfile = (props: Props) => {
   const { data: userInfoData } = useGetCurrentUserInfoQuery();
-  const {
-    data: privatePostsData,
-    error,
-    isError,
-    isLoading,
-  } = useGetPrivatePostsQuery();
+  const { data: privatePostsData } = useGetPrivatePostsQuery();
   console.log(privatePostsData);
   const auth = useSelector((state: RootState) => state.auth);
   const displayUserInfoCard = () => {
