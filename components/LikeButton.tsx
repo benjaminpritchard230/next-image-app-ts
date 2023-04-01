@@ -34,7 +34,7 @@ const LikeButton = ({ post }: Props) => {
         {token.length > 0 ? (
           <Chip
             icon={
-              post.likes.includes(parseInt(auth.id)) ? (
+              post.likes.includes(auth.id) ? (
                 <FavoriteIcon color="error" />
               ) : (
                 <FavoriteBorderIcon />
