@@ -14,11 +14,13 @@ import Grid from "@mui/material/Unstable_Grid2";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ReactTimeAgo from "react-time-ago";
+import CommentsDialog from "./CommentsDialog";
 import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
+import PostCommentsToggle from "./PostCommentsToggle";
 import TogglePrivateSwitch from "./TogglePrivateSwitch";
 
 type Props = {
@@ -36,9 +38,12 @@ const Item = styled(Paper)(({ theme }) => ({
 const PostCard = ({ post }: Props) => {
   TimeAgo.addLocale(en);
   const auth = useSelector((state: RootState) => state.auth);
+  const token = auth.token;
   const capitalizeString = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
+  const [commentsDialog, setCommentsDialog] = useState(false);
+
   return (
     <Grid xs={12} md={6} lg={4}>
       <Item sx={{ m: 0.5 }}>
@@ -60,11 +65,24 @@ const PostCard = ({ post }: Props) => {
           </CardContent>
           <CardActions>
             <LikeButton post={post} />
+            <PostCommentsToggle
+              post={post}
+              token={token}
+              username={auth.username}
+              commentsDialog={commentsDialog}
+              setCommentsDialog={setCommentsDialog}
+            />
             {post.user === auth.id ? <TogglePrivateSwitch post={post} /> : null}
             {post.user === auth.id ? <DeletePostButton post={post} /> : null}
           </CardActions>
         </Card>
       </Item>
+      <CommentsDialog
+        key={post.id}
+        post={post}
+        commentsDialog={commentsDialog}
+        setCommentsDialog={setCommentsDialog}
+      />
     </Grid>
   );
 };
