@@ -10,6 +10,7 @@ import { Stack } from "@mui/system";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ReactTimeAgo from "react-time-ago";
 type Props = {};
@@ -30,13 +31,15 @@ const UserDetail = (props: Props) => {
     isLoading,
   } = useGetUserInfoQuery(userId as string);
 
-  if (token.length > 0) {
-  }
-
-  // console.log(userInfoData.followers_names, "follows vbt");
   const capitalizeString = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
+
+  useEffect(() => {
+    if (userId != undefined && (userId as string) === auth.id.toString()) {
+      router.push("/my-profile");
+    }
+  }, []);
 
   if (userInfoData != undefined) {
     return (
