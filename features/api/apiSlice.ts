@@ -23,6 +23,11 @@ export const postsApi = createApi({
       query: (page) => `posts/all?page=${page}`,
       providesTags: ["Posts"],
     }),
+    getSpecificPost: builder.query<IPost, string>({
+      query: (id) => `posts/${id}`,
+      providesTags: ["Posts"],
+    }),
+
     getFollowingPosts: builder.query<IPost[], void>({
       query: () => `posts/following/`,
       providesTags: ["Posts"],
@@ -146,6 +151,7 @@ export const postsApi = createApi({
 
 export const {
   useGetPublicPostsQuery,
+  useGetSpecificPostQuery,
   useGetFollowingPostsQuery,
   useGetPrivatePostsQuery,
   useGetUserPostsQuery,
