@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
+import { styled } from "@mui/material/styles";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import Link from "next/link";
@@ -22,7 +22,6 @@ import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
 import PostCommentsToggle from "./PostCommentsToggle";
 import TogglePrivateSwitch from "./TogglePrivateSwitch";
-
 type Props = {
   post: IPost;
 };
@@ -49,14 +48,18 @@ const PostCard = ({ post }: Props) => {
       <Item sx={{ m: 0.5 }}>
         <Card sx={{ minHeight: 150 }}>
           <CardMedia
-            style={{ height: "300px", width: "auto" }}
+            style={{ height: "500px", width: "auto", margin: "auto" }}
             component="img"
             image={`https://escooter230.pythonanywhere.com/${post.image_url}`}
             alt={post.caption}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              &quot;{capitalizeString(post.caption)}&quot; posted by{" "}
+              &quot;
+              <Link href={`post/${post.id}`}>
+                {capitalizeString(post.caption)}&quot;
+              </Link>{" "}
+              posted by{" "}
               <Link href={`/user/${post.user}`}>
                 {capitalizeString(post.author)}
               </Link>{" "}
