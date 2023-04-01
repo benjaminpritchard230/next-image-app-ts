@@ -22,7 +22,7 @@ const Homepage = ({}: Props) => {
 
   const displayImagePosts = () => {
     if (!isLoading) {
-      return publicPostsData!.results.map((post) => (
+      return publicPostsData!.results.map((post: IPost) => (
         <PostCard post={post} key={post.id} />
       ));
     }
