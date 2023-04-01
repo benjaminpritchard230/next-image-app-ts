@@ -15,14 +15,6 @@ type Props = {
 };
 
 const FloatingActionButtons = ({ setNewPostDialog }: Props) => {
-  const style = {
-    margin: 0,
-    top: "auto",
-    right: 20,
-    bottom: 20,
-    left: "auto",
-    position: "fixed",
-  };
   const auth = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -36,7 +28,16 @@ const FloatingActionButtons = ({ setNewPostDialog }: Props) => {
   };
 
   return (
-    <Box sx={{ "& > :not(style)": { m: 1 } }} style={style}>
+    <Box
+      sx={{
+        margin: 0,
+        top: "auto",
+        right: 20,
+        bottom: 20,
+        left: "auto",
+        position: "fixed",
+      }}
+    >
       <Tooltip title="New post">
         <Fab
           color="primary"
