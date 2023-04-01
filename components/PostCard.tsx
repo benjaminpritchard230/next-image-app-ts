@@ -1,3 +1,4 @@
+import placeholder from "@/public/placeholder.png";
 import { RootState } from "@/store/store";
 import { IPost } from "@/types/posts";
 import {
@@ -13,6 +14,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -42,24 +44,36 @@ const PostCard = ({ post }: Props) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
   const [commentsDialog, setCommentsDialog] = useState(false);
-
+  const displayImage = () => {
+    if (post.image_url) {
+      return (
+        <CardMedia
+          style={{ height: "500px", width: "auto", margin: "auto" }}
+          component="img"
+          image={`https://escooter230.pythonanywhere.com/${post.image_url}`}
+          alt={post.caption}
+        />
+      );
+    } else {
+      return (
+        <CardMedia
+          style={{ height: "500px", width: "auto", margin: "auto" }}
+          component="img"
+          src={placeholder.src.toString()}
+          alt={post.caption}
+        />
+      );
+    }
+  };
   return (
     <Grid xs={12} md={6} lg={4}>
       <Item sx={{ m: 0.5 }}>
         <Card sx={{ minHeight: 150 }}>
-          <CardMedia
-            style={{ height: "500px", width: "auto", margin: "auto" }}
-            component="img"
-            image={`https://escooter230.pythonanywhere.com/${post.image_url}`}
-            alt={post.caption}
-          />
           <CardContent>
+            {displayImage()}
             <Typography variant="body2" color="text.secondary">
               &quot;
-              <Link href={`post/${post.id}`}>
-                {capitalizeString(post.caption)}&quot;
-              </Link>{" "}
-              posted by{" "}
+              {capitalizeString(post.caption)}&quot; posted by{" "}
               <Link href={`/user/${post.user}`}>
                 {capitalizeString(post.author)}
               </Link>{" "}
