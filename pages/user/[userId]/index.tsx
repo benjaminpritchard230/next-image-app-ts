@@ -11,7 +11,6 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
 type Props = {};
 
