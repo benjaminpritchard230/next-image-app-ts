@@ -27,7 +27,7 @@ const CommentDisplay = ({ comment }: Props) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
   return (
-    <Paper elevation={0} style={{ padding: "15px 10px" }}>
+    <Paper elevation={0} style={{ padding: "10px" }}>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
           <Avatar alt="Remy Sharp" src={imgLink} />
@@ -53,7 +53,7 @@ const CommentDisplay = ({ comment }: Props) => {
           </Stack>
         </Grid>
       </Grid>
-      <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
+      {/* <Divider variant="fullWidth" style={{ margin: "10px 0" }} /> */}
     </Paper>
   );
 };
