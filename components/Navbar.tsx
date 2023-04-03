@@ -1,4 +1,4 @@
-import { RootState } from "@/store/store";
+import { RootState, persistor } from "@/store/store";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import BurstModeOutlinedIcon from "@mui/icons-material/BurstModeOutlined";
@@ -77,6 +77,7 @@ const Navbar = (props: Props) => {
 
   const handleLogoutClick = () => {
     dispatch(setCredentials({ id: "", token: "" }));
+    persistor.purge();
     // dispatch(postsApi.util.resetApiState());
     // dispatch(postsApi.util.invalidateTags(["Posts"]));
 
