@@ -1,5 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { PURGE } from "redux-persist";
 
 export interface AuthState {
   id: number;
@@ -22,6 +23,9 @@ export const authSlice = createSlice({
       state.token = token;
       state.username = username;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState); // THIS LINE
   },
 });
 
