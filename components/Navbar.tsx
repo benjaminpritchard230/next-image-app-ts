@@ -77,8 +77,8 @@ const Navbar = (props: Props) => {
 
   const handleLogoutClick = () => {
     dispatch(setCredentials({ id: "", token: "" }));
-    dispatch(postsApi.util.resetApiState());
-    dispatch(postsApi.util.invalidateTags(["Posts"]));
+    // dispatch(postsApi.util.resetApiState());
+    // dispatch(postsApi.util.invalidateTags(["Posts"]));
 
     router.push("/");
   };
