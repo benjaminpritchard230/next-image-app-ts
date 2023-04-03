@@ -4,6 +4,7 @@ import {
   useGetPublicPostsQuery,
 } from "@/features/api/apiSlice";
 import { IPost, IPostsResponse } from "@/types/posts";
+import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
@@ -21,10 +22,16 @@ const Homepage = ({}: Props) => {
   } = useGetPublicPostsQuery("1", { refetchOnMountOrArgChange: true });
 
   const displayImagePosts = () => {
-    if (!isLoading) {
+    if (!isLoading && publicPostsData != undefined) {
       return publicPostsData!.results.map((post: IPost) => (
         <PostCard post={post} key={post.id} />
       ));
+    } else {
+      return (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress />
+        </Box>
+      );
     }
   };
   const { data: currentUserInfoData } = useGetCurrentUserInfoQuery();
