@@ -14,15 +14,17 @@ const CommentsList = ({ post }: Props) => {
     isLoading,
   } = useGetPostCommentsQuery(post.id);
 
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
-  //   const scrollToBottom = () => {
-  //     messagesEndRef.current?.scrollIntoView(false);
-  //   };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView(false);
+  };
 
-  //   useEffect(() => {
-  //     scrollToBottom();
-  //   }, [postCommentsData]);
+  useEffect(() => {
+    scrollToBottom();
+
+    setTimeout(scrollToBottom, 15);
+  }, [postCommentsData]);
 
   return (
     <div ref={messagesEndRef}>
