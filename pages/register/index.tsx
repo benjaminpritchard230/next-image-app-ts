@@ -1,6 +1,6 @@
 import { useRegisterMutation } from "@/features/api/apiSlice";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { List, ListItem, ListItemText } from "@mui/material";
+import { CircularProgress, List, ListItem, ListItemText } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -121,9 +121,13 @@ const RegisterPage = (props: Props) => {
               </ListItem>
             </List>
           ) : null}
-          <Grid container justifyContent="flex-end">
-            <Grid item></Grid>
-          </Grid>
+          {isLoading ? (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            ""
+          )}
         </Box>
       </Box>
     </Container>
