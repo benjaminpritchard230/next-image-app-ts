@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { json } from "stream/consumers";
 
 type Props = {};
 
@@ -35,12 +36,12 @@ const LoginPage = (props: Props) => {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
   const [formState, setFormState] = useState({
     username: "",
     password: "",
   });
-
+  console.log(error);
   const handleChange = ({ target: { name, value } }: ITarget) =>
     setFormState((prev) => ({ ...prev, [name]: value }));
 
@@ -54,7 +55,20 @@ const LoginPage = (props: Props) => {
       console.log(err);
     }
   };
+  const extractErrorMessage = (str: string) => {
+    const matches = str.match(/\[(.*?)\]/);
+    if (matches) {
+      return matches[1];
+    } else {
+      return null;
+    }
+  };
 
+  const displayError = () => {
+    if (error && "data" in error) {
+      return <div>{extractErrorMessage(JSON.stringify(error.data))}</div>;
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -109,11 +123,13 @@ const LoginPage = (props: Props) => {
           >
             Sign In
           </Button>
-          <List>
-            <ListItem>
-              <ListItemText>list item text</ListItemText>
-            </ListItem>
-          </List>
+          {error ? (
+            <List>
+              <ListItem>
+                <ListItemText>Error: {displayError()}</ListItemText>
+              </ListItem>
+            </List>
+          ) : null}
 
           <Grid container>
             <Grid item xs>

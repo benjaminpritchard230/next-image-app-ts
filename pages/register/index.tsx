@@ -1,5 +1,6 @@
 import { useRegisterMutation } from "@/features/api/apiSlice";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { List, ListItem, ListItemText } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -26,7 +27,7 @@ type Props = {};
 const RegisterPage = (props: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register, { isLoading, error }] = useRegisterMutation();
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -34,6 +35,21 @@ const RegisterPage = (props: Props) => {
 
   const handleChange = ({ target: { name, value } }: ITarget) =>
     setFormState((prev) => ({ ...prev, [name]: value }));
+
+  const extractErrorMessage = (str: string) => {
+    const matches = str.match(/\[(.*?)\]/);
+    if (matches) {
+      return matches[1];
+    } else {
+      return null;
+    }
+  };
+
+  const displayError = () => {
+    if (error && "data" in error) {
+      return <div>{extractErrorMessage(JSON.stringify(error.data))}</div>;
+    }
+  };
 
   const handleRegisterClick = async () => {
     try {
@@ -98,6 +114,13 @@ const RegisterPage = (props: Props) => {
           >
             Sign Up
           </Button>
+          {error ? (
+            <List>
+              <ListItem>
+                <ListItemText>Error: {displayError()}</ListItemText>
+              </ListItem>
+            </List>
+          ) : null}
           <Grid container justifyContent="flex-end">
             <Grid item></Grid>
           </Grid>
