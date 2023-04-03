@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { store } from "@/store/store";
+import { persistor, store } from "@/store/store";
 import createEmotionCache from "@/utils/createEmotionCache";
 import theme from "@/utils/theme";
 import { CacheProvider, EmotionCache } from "@emotion/react";
@@ -15,6 +15,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import "@/styles/globals.scss";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -37,16 +38,21 @@ export default function MyApp(props: MyAppProps) {
 
   return (
     <Provider store={store}>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          {getLayout(<Component {...pageProps} />)}
-        </ThemeProvider>
-      </CacheProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
+          </Head>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {getLayout(<Component {...pageProps} />)}
+          </ThemeProvider>
+        </CacheProvider>
+      </PersistGate>
     </Provider>
   );
 }
