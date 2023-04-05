@@ -18,7 +18,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postsApi,
@@ -35,6 +35,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
+  const remember = useSelector((state: RootState) => state.auth.remember);
 
   const token = auth.token;
   const username = auth.username;
@@ -77,7 +78,7 @@ const Navbar = (props: Props) => {
 
   const handleLogoutClick = () => {
     dispatch(setCredentials({ id: "", token: "" }));
-    persistor.purge();
+    // persistor.purge();
     // dispatch(postsApi.util.resetApiState());
     // dispatch(postsApi.util.invalidateTags(["Posts"]));
 
@@ -94,6 +95,13 @@ const Navbar = (props: Props) => {
   const notificationsCount = notificationsData
     ? notificationsData.filter((obj) => obj.unread === true).length
     : 0;
+
+  useEffect(() => {
+    if (!auth.remember) {
+      dispatch(setCredentials({ id: "", token: "" }));
+    }
+    console.log("remount navbar");
+  }, []);
 
   return (
     <AppBar position="sticky">
@@ -137,6 +145,7 @@ const Navbar = (props: Props) => {
             {auth.id}
             {auth.username}
             {auth.token}
+            {remember ? " remember" : " disremember"}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
