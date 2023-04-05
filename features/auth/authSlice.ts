@@ -6,12 +6,14 @@ export interface AuthState {
   id: number;
   token: string;
   username: string;
+  remember: boolean;
 }
 
 const initialState: AuthState = {
   id: NaN,
   token: "",
   username: "",
+  remember: false,
 };
 
 export const authSlice = createSlice({
@@ -23,6 +25,9 @@ export const authSlice = createSlice({
       state.token = token;
       state.username = username;
     },
+    setRemember: (state) => {
+      state.remember = !state.remember;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(PURGE, () => initialState); // THIS LINE
@@ -30,6 +35,6 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, setRemember } = authSlice.actions;
 
 export default authSlice.reducer;
