@@ -1,5 +1,5 @@
 import { useLoginMutation } from "@/features/api/apiSlice";
-import { setCredentials } from "@/features/auth/authSlice";
+import { setCredentials, setRemember } from "@/features/auth/authSlice";
 import { RootState } from "@/store/store";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { CircularProgress, List, ListItem, ListItemText } from "@mui/material";
@@ -69,6 +69,11 @@ const LoginPage = (props: Props) => {
       return <div>{extractErrorMessage(JSON.stringify(error.data))}</div>;
     }
   };
+
+  const handleRememberChange = () => {
+    console.log("changed");
+    dispatch(setRemember());
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -110,7 +115,14 @@ const LoginPage = (props: Props) => {
             onChange={handleChange}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={
+              <Checkbox
+                value="remember"
+                color="primary"
+                onChange={handleRememberChange}
+                checked={auth.remember}
+              />
+            }
             label="Remember me"
           />
           <Button
