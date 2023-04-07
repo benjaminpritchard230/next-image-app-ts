@@ -48,19 +48,21 @@ const PostCard = ({ post }: Props) => {
     if (post.image_url) {
       return (
         <CardMedia
-          style={{ height: "500px", width: "auto", margin: "auto" }}
+          sx={{ objectFit: "contain" }}
           component="img"
           image={`https://escooter230.pythonanywhere.com/${post.image_url}`}
           alt={post.caption}
+          height={"400em"}
         />
       );
     } else {
       return (
         <CardMedia
-          style={{ height: "500px", width: "auto", margin: "auto" }}
+          sx={{ objectFit: "contain" }}
           component="img"
           src={placeholder.src.toString()}
           alt={post.caption}
+          height={"400em"}
         />
       );
     }
