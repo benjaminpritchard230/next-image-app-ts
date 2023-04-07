@@ -1,3 +1,4 @@
+import ProgressSpinner from "@/components/ProgressSpinner";
 import { useRegisterMutation } from "@/features/api/apiSlice";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { CircularProgress, List, ListItem, ListItemText } from "@mui/material";
@@ -121,13 +122,7 @@ const RegisterPage = (props: Props) => {
               </ListItem>
             </List>
           ) : null}
-          {isLoading ? (
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            ""
-          )}
+          {isLoading ? <ProgressSpinner /> : ""}
         </Box>
       </Box>
     </Container>

@@ -1,4 +1,5 @@
 import PostCard from "@/components/PostCard";
+import ProgressSpinner from "@/components/ProgressSpinner";
 import {
   useGetCurrentUserInfoQuery,
   useGetPublicPostsQuery,
@@ -27,11 +28,7 @@ const Homepage = ({}: Props) => {
         <PostCard post={post} key={post.id} />
       ));
     } else {
-      return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
-      );
+      return <ProgressSpinner />;
     }
   };
   const { data: currentUserInfoData } = useGetCurrentUserInfoQuery();

@@ -1,3 +1,4 @@
+import ProgressSpinner from "@/components/ProgressSpinner";
 import { useLoginMutation } from "@/features/api/apiSlice";
 import { setCredentials, setRemember } from "@/features/auth/authSlice";
 import { RootState } from "@/store/store";
@@ -151,13 +152,7 @@ const LoginPage = (props: Props) => {
             </Grid>
             <Grid item></Grid>
           </Grid>
-          {isLoading ? (
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            ""
-          )}
+          {isLoading ? <ProgressSpinner /> : ""}
         </Box>
       </Box>
     </Container>
