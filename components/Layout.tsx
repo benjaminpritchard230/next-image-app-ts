@@ -17,7 +17,6 @@ export default function Layout({ children }: any) {
       <main>{children}</main>
       <NewPostDialog />
       <FloatingActionButtons />
-      <Footer />
     </>
   );
 }
