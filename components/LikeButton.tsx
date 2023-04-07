@@ -29,7 +29,7 @@ const LikeButton = ({ post }: Props) => {
       : "No likes yet";
 
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={1} padding={1}>
       <Tooltip title={liked_by} placement="top">
         {token.length > 0 ? (
           <Chip
