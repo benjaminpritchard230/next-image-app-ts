@@ -36,7 +36,7 @@ export const postsApi = createApi({
       query: () => `posts/my/`,
       providesTags: ["Posts"],
     }),
-    getUserPosts: builder.query<IPost[], number>({
+    getUserPosts: builder.query<IPost[], string>({
       query: (id) => `user/${id}/posts/`,
       providesTags: ["Posts"],
     }),
