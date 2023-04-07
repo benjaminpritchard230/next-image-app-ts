@@ -14,16 +14,23 @@ const Item = styled(Paper)(({ theme }) => ({
   justifyContent: "center",
   display: "flex",
   color: theme.palette.text.secondary,
+  boxShadow: "none",
 }));
 
 const TechImageCard = ({ image, title }: Props) => {
   return (
-    <Grid xs={12} lg={6}>
+    <Grid
+      xs={12}
+      lg={6}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Item sx={{ m: 0.5 }}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardMedia component="img" image={image} alt={title} />
-          </CardActionArea>
+        <Card sx={{ width: "73.5%", height: "auto", boxShadow: "none" }}>
+          <CardMedia component="img" image={image} alt={title} />
         </Card>
       </Item>
     </Grid>
