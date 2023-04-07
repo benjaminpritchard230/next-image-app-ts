@@ -141,13 +141,6 @@ const Navbar = (props: Props) => {
           >
             Image
           </Typography>
-          <Typography>
-            {auth.id}
-            {auth.username}
-            {auth.token}
-            {remember ? " remember" : " disremember"}
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -179,7 +172,14 @@ const Navbar = (props: Props) => {
               disableScrollLock={true}
             >
               <MenuItem key={"ertyer "} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">About</Typography>
+                <Typography
+                  textAlign="center"
+                  onClick={() => {
+                    router.push("/about");
+                  }}
+                >
+                  About
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -209,7 +209,10 @@ const Navbar = (props: Props) => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               key={"fgsdfg"}
-              onClick={handleCloseNavMenu}
+              onClick={() => {
+                handleCloseNavMenu;
+                router.push("/about");
+              }}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               About
