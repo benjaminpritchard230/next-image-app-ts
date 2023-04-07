@@ -1,5 +1,5 @@
 import createEmotionCache from "@/utils/createEmotionCache";
-import theme, { roboto } from "@/utils/theme";
+import theme, { montserrat } from "@/utils/theme";
 import createEmotionServer from "@emotion/server/create-instance";
 import { AppType } from "next/app";
 import Document, {
@@ -19,7 +19,7 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="en" className={roboto.className}>
+    <Html lang="en" className={montserrat.className}>
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
