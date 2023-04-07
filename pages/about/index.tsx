@@ -1,4 +1,5 @@
 import AboutImageList from "@/components/AboutImageList";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -10,64 +11,87 @@ type Props = {};
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
+  padding: theme.spacing(5),
+  textAlign: "left",
   color: theme.palette.text.secondary,
+  boxShadow: "none",
 }));
 
 const AboutPage = (props: Props) => {
   return (
     <Grid container spacing={2}>
-      <Grid xs={12} md={6}>
+      <Grid xs={12} md={8}>
         <Item>
           <Typography>
             <h3>About</h3>
             <p>
-              This website, created using Nextjs, MUI, Typescript, and RTK
-              query, is a dynamic and interactive platform for users to share
-              and view images, connect with other users, and engage in social
-              activities. The website allows users to sign up and create a
-              profile with an avatar and an about me section. They can also view
-              other users&apos; profiles and follow other users.Users can share
-              their images, view other users&apos; images, like and comment on
-              images, and like other people&apos;s comments. Users can view all
-              images that have been posted or only view images from people they
-              are following. The website is highly interactive, and users can
-              engage with each other through likes and comments.
+              This website is a social media platform that allows users to
+              create an account and share their own images. Users can also view
+              other users&apos; images, like and comment on them, and receive
+              notifications when someone likes or comments on their posts.
+              Additionally, users can create a profile with an avatar and an
+              &quot;about me&quot; section, view other users&apos; profiles, and
+              follow other users.
             </p>
             <p>
-              The website is designed to be highly responsive and provides a
-              smooth and seamless user experience. With MUI, many useful
-              components are available to create a complex website with a lot of
-              user interaction. The website is built with Nextjs, which
-              simplifies the creation of different routes and pages, such as
-              login, user profile, and posts page. The use of typescript ensures
-              that there are no type errors and that the data returned from the
-              api is handled properly.
+              To build the website, the developer used a combination of Next.js,
+              MUI, Typescript, and RTK Query. Next.js is a popular React
+              framework that simplifies the creation of different routes on the
+              website, such as for the posts page, login page, or user profile
+              page.
             </p>
             <p>
-              The core functionality of the website is based on RTK query, which
-              simplifies the management of data fetching and mutations. The RTK
-              query tag feature allows the data to be re-cached when a mutation
-              is made. This means that when, for example, a user creates a new
-              post, the post data is updated so that the new post is displayed
-              immediately. This ensures that the website is highly responsive
-              and provides a seamless user experience. The website uses a
-              backend that is written in Python using the Django framework, and
-              it is hosted on the Python Anywhere site.
+              MUI, or Material UI, is a React UI library that provides many
+              useful components for building complex websites with a lot of user
+              interaction. The use of MUI made it easier for the developer to
+              create a responsive website that can be used on different screen
+              sizes.
             </p>
             <p>
-              In summary, the website created using Nextjs, MUI, typescript, and
-              RTK query is a highly interactive and dynamic platform for users
-              to connect with each other and engage in social activities. With
-              its highly responsive design, users can seamlessly share and view
-              images, engage with each other through likes and comments, and
-              create profiles with avatars and about me sections.
+              RTK Query is a powerful data fetching and mutation management
+              library that was used to handle data fetching and mutations on the
+              website. It simplifies the organisation of different API endpoints
+              and ensures that data is re-cached when a mutation is made. For
+              example, when a user creates a new post, the post data is updated
+              so that the new post is displayed immediately. This helps the
+              website to feel more responsive.
             </p>
+            <p>
+              Typescript was used to ensure type safety in handling data
+              returned from the backend, which was written in Python using the
+              Django framework. The backend was hosted on PythonAnywhere, a
+              platform that makes it easy to deploy, run, and scale Python
+              applications in the cloud.
+            </p>
+            <p>
+              The combination of Nextjs, MUI, Typescript, and RTK Query allowed
+              the developer to build a user-friendly social media platform that
+              provides a seamless user experience. The use of modern
+              technologies ensures that the website is responsive, performs
+              well, and is easy to maintain and update.
+            </p>
+            <h3>
+              <a href="https://github.com/benjaminpritchard230/next-image-app-ts">
+                <GitHubIcon />
+                &nbsp;Link to website Github repository.
+              </a>
+            </h3>
+            <h3>
+              <a href="https://github.com/benjaminpritchard230/django-image-app-api">
+                <GitHubIcon />
+                &nbsp;Link to Django back-end Github repository.
+              </a>
+            </h3>
+            <h3>
+              <a href="https://github.com/benjaminpritchard230">
+                <GitHubIcon />
+                &nbsp;Created by Ben Pritchard 2023
+              </a>
+            </h3>
           </Typography>
         </Item>
       </Grid>
-      <Grid xs={12} md={6}>
+      <Grid xs={12} md={4}>
         <Item>
           <AboutImageList />
         </Item>
