@@ -27,8 +27,8 @@ type Props = {
 };
 
 const NotificationDisplay = ({ notification }: Props) => {
+  TimeAgo.addLocale(en);
   const [markRead] = useMarkNotificationReadMutation();
-  TimeAgo.addDefaultLocale(en);
 
   return (
     <>
