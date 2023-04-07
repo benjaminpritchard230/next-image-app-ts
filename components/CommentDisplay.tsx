@@ -1,3 +1,4 @@
+import { useGetUserInfoQuery } from "@/features/api/apiSlice";
 import { RootState } from "@/store/store";
 import { IComment } from "@/types/comments";
 import { Avatar, Chip, Divider, Grid, Paper } from "@mui/material";
@@ -21,6 +22,12 @@ const CommentDisplay = ({ comment }: Props) => {
   const id = auth.id;
   console.log(comment);
   console.log(id);
+  const {
+    data: userInfoData,
+    error,
+    isError,
+    isLoading,
+  } = useGetUserInfoQuery(`${comment.user}`);
 
   const userUrl = `user/${comment.user}/`;
   const capitalizeString = (str: string) => {
@@ -30,7 +37,10 @@ const CommentDisplay = ({ comment }: Props) => {
     <Paper elevation={0} style={{ padding: "10px" }}>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
-          <Avatar alt="Remy Sharp" src={imgLink} />
+          <Avatar
+            alt="Remy Sharp"
+            src={`https://escooter230.pythonanywhere.com/${userInfoData?.profile_image}`}
+          />
         </Grid>
         <Grid justifyContent="left" item xs zeroMinWidth>
           <Stack direction="row" spacing={1}>

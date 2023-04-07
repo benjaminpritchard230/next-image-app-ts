@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAddCommentMutation } from "../features/api/apiSlice";
+import UserAvatar from "./UserAvatar";
 
 type Props = {
   post: IPost;
@@ -54,10 +55,7 @@ const CommentAdd = ({ post, handleClose }: Props) => {
     >
       <Box sx={{ p: "15px" }}>
         <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <Avatar
-            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-            alt="user-avatar"
-          />
+          <UserAvatar />
           <TextField
             multiline
             fullWidth
