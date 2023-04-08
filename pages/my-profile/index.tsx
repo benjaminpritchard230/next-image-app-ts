@@ -6,6 +6,7 @@ import {
   useGetPublicPostsQuery,
 } from "@/features/api/apiSlice";
 import { RootState } from "@/store/store";
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -35,6 +36,7 @@ const MyProfile = (props: Props) => {
   return (
     <>
       {displayUserInfoCard()}
+      <Typography>My posts:</Typography>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={0}>
           {displayImagePosts()}
