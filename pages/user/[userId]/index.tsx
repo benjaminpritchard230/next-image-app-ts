@@ -149,6 +149,9 @@ const UserDetail = (props: Props) => {
             ) : null}
           </CardContent>
         </Card>
+        <Typography>
+          Posts by {capitalizeString(userInfoData.username)}:
+        </Typography>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={0}>
             {displayImagePosts()}
