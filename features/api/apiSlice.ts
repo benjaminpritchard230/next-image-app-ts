@@ -136,7 +136,7 @@ export const postsApi = createApi({
         url: `user/${id}/follow/`,
         method: "PUT",
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["User", "Posts"],
     }),
     markNotificationRead: builder.mutation({
       query: (id) => ({
