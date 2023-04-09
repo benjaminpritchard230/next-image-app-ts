@@ -1,6 +1,4 @@
-import { RootState, persistor } from "@/store/store";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { RootState } from "@/store/store";
 import BurstModeOutlinedIcon from "@mui/icons-material/BurstModeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -20,12 +18,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  postsApi,
-  useGetCurrentUserInfoQuery,
-  useGetNotificationsQuery,
-  useGetPublicPostsQuery,
-} from "../features/api/apiSlice";
+import { useGetNotificationsQuery } from "../features/api/apiSlice";
 import { setCredentials } from "../features/auth/authSlice";
 import NotificationsPopper from "./NotificationsPopper";
 import UserAvatar from "./UserAvatar";
@@ -34,12 +27,11 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const dispatch = useDispatch();
-  const auth = useSelector((state: RootState) => state.auth);
-  const remember = useSelector((state: RootState) => state.auth.remember);
+  const router = useRouter();
 
+  const auth = useSelector((state: RootState) => state.auth);
   const token = auth.token;
   const username = auth.username;
-  const router = useRouter();
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);

@@ -7,8 +7,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
-import * as React from "react";
-import { useEffect, useRef } from "react";
 import { useGetPostCommentsQuery } from "../features/api/apiSlice";
 
 type Props = {
@@ -18,22 +16,9 @@ type Props = {
 };
 
 const CommentsDialog = ({ post, commentsDialog, setCommentsDialog }: Props) => {
-  const handleClose = () => setCommentsDialog(false);
-
-  const messagesEndRef = useRef(null);
-
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, []);
-
   const { data: postCommentsData } = useGetPostCommentsQuery(post.id);
-  if (commentsDialog === true) {
-    console.log(postCommentsData, "comments");
-  }
+
+  const handleClose = () => setCommentsDialog(false);
 
   return (
     <Dialog

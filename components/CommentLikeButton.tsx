@@ -13,7 +13,6 @@ type Props = { comment: IComment };
 
 const CommentLikeButton = ({ comment }: Props) => {
   const auth = useSelector((state: RootState) => state.auth);
-
   const token = auth.token;
 
   const [likeComment, { isLoading }] = useLikeCommentMutation();
@@ -27,6 +26,7 @@ const CommentLikeButton = ({ comment }: Props) => {
     likeComment(comment.id);
     console.log(comment);
   };
+
   return (
     <Stack direction="row" spacing={1}>
       <Tooltip title={liked_by} placement="bottom">

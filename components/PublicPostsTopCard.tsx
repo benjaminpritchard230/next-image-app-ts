@@ -6,7 +6,6 @@ import FormGroup from "@mui/material/FormGroup";
 import Switch from "@mui/material/Switch";
 import { Stack } from "@mui/system";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 type Props = {
@@ -18,18 +17,15 @@ const PublicPostsTopCard = ({
   subscriptionsOnly,
   setSubscriptionsOnly,
 }: Props) => {
-  const auth = useSelector((state: RootState) => state.auth);
   const router = useRouter();
+
+  const auth = useSelector((state: RootState) => state.auth);
   const token = auth.token;
 
   const handleChange = () => {
     setSubscriptionsOnly(!subscriptionsOnly);
     router.push("/");
   };
-
-  useEffect(() => {
-    console.log(subscriptionsOnly ? "true" : "false", "subs");
-  }, [subscriptionsOnly]);
 
   return (
     <Card

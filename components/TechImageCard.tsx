@@ -1,11 +1,6 @@
-import { Box, CardActionArea, Grid, Paper, styled } from "@mui/material";
+import { Grid, Paper, styled } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
-
-type Props = { image: string; title: string };
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,6 +11,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
   boxShadow: "none",
 }));
+
+type Props = { image: string; title: string };
 
 const TechImageCard = ({ image, title }: Props) => {
   return (

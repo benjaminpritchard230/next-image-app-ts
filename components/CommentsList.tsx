@@ -8,11 +8,9 @@ type Props = {
 };
 
 const CommentsList = ({ post }: Props) => {
-  const {
-    data: postCommentsData,
-
-    isLoading,
-  } = useGetPostCommentsQuery(post.id);
+  const { data: postCommentsData, isLoading } = useGetPostCommentsQuery(
+    post.id
+  );
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -22,7 +20,6 @@ const CommentsList = ({ post }: Props) => {
 
   useEffect(() => {
     scrollToBottom();
-
     setTimeout(scrollToBottom, 15);
   }, [postCommentsData]);
 

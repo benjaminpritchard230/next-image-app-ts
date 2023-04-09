@@ -17,12 +17,12 @@ const FollowButton = ({ id }: Props) => {
     isLoading,
   } = useGetCurrentUserInfoQuery();
 
-  console.log(currentUserInfoData, "cuid");
   const [followUser] = useFollowUserMutation();
 
   const handleSubscribeClick = () => {
     followUser(id);
   };
+
   if (currentUserInfoData != undefined) {
     return (
       <Tooltip

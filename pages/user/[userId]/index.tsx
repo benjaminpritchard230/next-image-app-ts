@@ -23,12 +23,11 @@ type Props = {};
 
 const UserDetail = (props: Props) => {
   TimeAgo.addLocale(en);
+  const auth = useSelector((state: RootState) => state.auth);
+  const token = auth.token;
 
   const router = useRouter();
   const userId = router.query.userId;
-  const auth = useSelector((state: RootState) => state.auth);
-
-  const token = auth.token;
 
   const {
     data: userInfoData,
@@ -38,8 +37,6 @@ const UserDetail = (props: Props) => {
   } = useGetUserInfoQuery(userId as string);
 
   const { data: userPostData } = useGetUserPostsQuery(userId as string);
-
-  console.log(userPostData, "userposts");
 
   const capitalizeString = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();

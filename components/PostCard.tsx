@@ -8,15 +8,13 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ReactTimeAgo from "react-time-ago";
 import CommentsDialog from "./CommentsDialog";
@@ -24,6 +22,7 @@ import DeletePostButton from "./DeletePostButton";
 import LikeButton from "./LikeButton";
 import PostCommentsToggle from "./PostCommentsToggle";
 import TogglePrivateSwitch from "./TogglePrivateSwitch";
+
 type Props = {
   post: IPost;
 };
@@ -40,10 +39,13 @@ const PostCard = ({ post }: Props) => {
   TimeAgo.addLocale(en);
   const auth = useSelector((state: RootState) => state.auth);
   const token = auth.token;
+
   const capitalizeString = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
+
   const [commentsDialog, setCommentsDialog] = useState(false);
+
   const displayImage = () => {
     if (post.image_url) {
       return (
@@ -67,6 +69,7 @@ const PostCard = ({ post }: Props) => {
       );
     }
   };
+
   return (
     <Grid xs={12} md={6} lg={4}>
       <Item sx={{ m: 0.5 }}>

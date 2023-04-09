@@ -1,6 +1,7 @@
 import EditButton from "@/components/EditButton";
 import EditUserAvatarDialog from "@/components/EditUserAvatarDialog";
 import EditUserProfileDialog from "@/components/EditUserProfileDialog";
+import { IUserInfo } from "@/types/userInfo";
 import { Avatar, Tooltip } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,13 +10,8 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import { useSelector } from "react-redux";
-import ReactTimeAgo from "react-time-ago";
-import { useGetCurrentUserInfoQuery } from "../features/api/apiSlice";
-
-import { RootState } from "@/store/store";
-import { IUserInfo } from "@/types/userInfo";
 import { useState } from "react";
+import ReactTimeAgo from "react-time-ago";
 
 type Props = {
   userInfoData: IUserInfo;
@@ -35,9 +31,6 @@ const PrivateUserCard = ({ userInfoData }: Props) => {
     setEditUserAvatarDialog(!editUserAvatarDialog);
   };
 
-  const auth = useSelector((state: RootState) => state.auth);
-
-  console.log(userInfoData, "userinfodata");
   const capitalizeString = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };

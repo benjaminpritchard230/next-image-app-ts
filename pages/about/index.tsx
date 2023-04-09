@@ -1,11 +1,10 @@
 import AboutImageList from "@/components/AboutImageList";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
-import * as React from "react";
+
 type Props = {};
 
 const Item = styled(Paper)(({ theme }) => ({

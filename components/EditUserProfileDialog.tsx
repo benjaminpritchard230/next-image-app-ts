@@ -8,7 +8,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import { Dispatch, SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useEditUserProfileMutation } from "../features/api/apiSlice";
 
 type Props = {
@@ -20,9 +19,8 @@ const EditUserProfileDialog = ({
   editUserProfileDialog,
   setEditUserProfileDialog,
 }: Props) => {
-  const dispatch = useDispatch();
-
   const [location, setLocation] = useState("");
+
   const [aboutMe, setAboutMe] = useState("");
 
   const [editUserProfile] = useEditUserProfileMutation();

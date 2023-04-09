@@ -12,14 +12,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
-import * as React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { json } from "stream/consumers";
 
 type Props = {};
 
@@ -31,17 +28,18 @@ interface ITarget {
 }
 
 const LoginPage = (props: Props) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const auth = useSelector((state: RootState) => state.auth);
 
-  const router = useRouter();
-
-  const dispatch = useDispatch();
   const [login, { isLoading, error }] = useLoginMutation();
+
   const [formState, setFormState] = useState({
     username: "",
     password: "",
   });
-  console.log(error);
+
   const handleChange = ({ target: { name, value } }: ITarget) =>
     setFormState((prev) => ({ ...prev, [name]: value }));
 
@@ -49,7 +47,6 @@ const LoginPage = (props: Props) => {
     try {
       const user = await login(formState).unwrap();
       dispatch(setCredentials(user));
-      console.log(user, "user");
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -71,9 +68,9 @@ const LoginPage = (props: Props) => {
   };
 
   const handleRememberChange = () => {
-    console.log("changed");
     dispatch(setRemember());
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

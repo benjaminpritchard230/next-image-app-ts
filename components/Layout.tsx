@@ -2,7 +2,6 @@
 
 import Head from "next/head";
 import FloatingActionButtons from "./FloatingActionButtons";
-import Footer from "./Footer";
 import Navbar from "./Navbar";
 import NewPostDialog from "./NewPostDialog";
 

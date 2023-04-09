@@ -3,28 +3,27 @@ import PrivateUserCard from "@/components/PrivateUserCard";
 import {
   useGetCurrentUserInfoQuery,
   useGetPrivatePostsQuery,
-  useGetPublicPostsQuery,
 } from "@/features/api/apiSlice";
 import { RootState } from "@/store/store";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-
-import React from "react";
 import { useSelector } from "react-redux";
 
 type Props = {};
 
 const MyProfile = (props: Props) => {
+  const auth = useSelector((state: RootState) => state.auth);
+
   const { data: userInfoData } = useGetCurrentUserInfoQuery();
   const { data: privatePostsData } = useGetPrivatePostsQuery();
-  console.log(privatePostsData);
-  const auth = useSelector((state: RootState) => state.auth);
+
   const displayUserInfoCard = () => {
     if (userInfoData != undefined && auth.token.length > 0) {
       return <PrivateUserCard userInfoData={userInfoData!} />;
     }
   };
+
   const displayImagePosts = () => {
     if (privatePostsData != undefined && auth.token.length > 0) {
       return privatePostsData!.map((post) => (

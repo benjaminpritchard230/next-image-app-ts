@@ -6,7 +6,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { Dispatch, SetStateAction } from "react";
-import { useDispatch } from "react-redux";
 import { useEditUserProfileMutation } from "../features/api/apiSlice";
 
 import MyDropzone from "./MyDropzone";
@@ -20,15 +19,12 @@ const EditUserAvatarDialog = ({
   editUserAvatarDialog,
   setEditUserAvatarDialog,
 }: Props) => {
-  const dispatch = useDispatch();
-
   const [editUserProfile] = useEditUserProfileMutation();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setEditUserAvatarDialog(false);
     const data = new FormData(e.target);
-    console.log(data, "data");
     try {
       await editUserProfile(data).unwrap();
     } catch (err) {

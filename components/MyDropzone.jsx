@@ -34,10 +34,8 @@ const img = {
 };
 
 function MyDropzone({ inputProps }) {
-  const accept = {
-    "image/png": [".png", ".jpeg", ".jpg", ".webp"],
-  };
   const [files, setFiles] = useState([]);
+
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone({
       accept: {

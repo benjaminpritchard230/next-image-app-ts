@@ -1,6 +1,6 @@
 import { RootState } from "@/store/store";
 import { IPost } from "@/types/posts";
-import { Avatar, Button, Card, Stack, TextField } from "@mui/material";
+import { Button, Card, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,16 +20,13 @@ interface ITarget {
 }
 
 const CommentAdd = ({ post, handleClose }: Props) => {
-  const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
-
-  const token = auth.token;
-  const [formState, setFormState] = useState({ body: "" });
   const [addComment, { isLoading }] = useAddCommentMutation();
+
+  const [formState, setFormState] = useState({ body: "" });
 
   const handleChange = ({ target: { name, value } }: ITarget) => {
     setFormState((prev) => ({ ...prev, [name]: value }));
-    console.log(formState, "formstate");
   };
 
   const id = post.id;
@@ -80,7 +77,6 @@ const CommentAdd = ({ post, handleClose }: Props) => {
           </Button>
           <Button
             size="large"
-            // sx={{ mt: 3, mb: 2 }}
             onClick={() => {
               handleClose();
             }}

@@ -1,18 +1,14 @@
 import PostCard from "@/components/PostCard";
 import PublicPostsTopCard from "@/components/PublicPostsTopCard";
 import {
-  useGetCurrentUserInfoQuery,
   useGetFollowingPostsQuery,
   useGetPublicPostsQuery,
 } from "@/features/api/apiSlice";
 import { RootState } from "@/store/store";
-import { IPost, IPostsResponse } from "@/types/posts";
+import { IPost } from "@/types/posts";
 import { CircularProgress, Pagination } from "@mui/material";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,8 +16,10 @@ type Props = {};
 
 const Homepage = ({}: Props) => {
   const router = useRouter();
-  const auth = useSelector((state: RootState) => state.auth);
   const pageNumber = router.query.pageNumber ? router.query.pageNumber : "1";
+
+  const auth = useSelector((state: RootState) => state.auth);
+  const token = auth.token;
 
   const [subscriptionsOnly, setSubscriptionsOnly] = useState(false);
 
@@ -50,6 +48,7 @@ const Homepage = ({}: Props) => {
       );
     }
   };
+
   const displaySubscribedImagePosts = () => {
     if (!isLoadingSubscribed && subscribedPostsData != undefined) {
       return subscribedPostsData!.map((post: IPost) => (
@@ -64,8 +63,6 @@ const Homepage = ({}: Props) => {
     }
   };
 
-  const { data: currentUserInfoData } = useGetCurrentUserInfoQuery();
-  console.log(currentUserInfoData);
   const count = !isLoadingPublic ? Math.ceil(publicPostsData!.count / 9) : 0;
 
   const handlePageChange = (
@@ -76,7 +73,7 @@ const Homepage = ({}: Props) => {
   };
   return (
     <>
-      {auth.token.length > 0 ? (
+      {token.length > 0 ? (
         <PublicPostsTopCard
           subscriptionsOnly={subscriptionsOnly}
           setSubscriptionsOnly={setSubscriptionsOnly}

@@ -9,11 +9,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 interface ITarget {
   target: {
@@ -26,8 +23,9 @@ type Props = {};
 
 const RegisterPage = (props: Props) => {
   const router = useRouter();
-  const dispatch = useDispatch();
+
   const [register, { isLoading, error }] = useRegisterMutation();
+
   const [formState, setFormState] = useState({
     username: "",
     password: "",

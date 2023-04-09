@@ -1,6 +1,5 @@
 import { useGetCurrentUserInfoQuery } from "@/features/api/apiSlice";
 import { Avatar } from "@mui/material";
-import React from "react";
 
 type Props = {};
 
