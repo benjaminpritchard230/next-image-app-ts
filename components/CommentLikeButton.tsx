@@ -24,7 +24,6 @@ const CommentLikeButton = ({ comment }: Props) => {
 
   const handleLikeClick = () => {
     likeComment(comment.id);
-    console.log(comment);
   };
 
   return (
