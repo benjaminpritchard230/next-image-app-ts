@@ -89,8 +89,6 @@ const PostCard = ({ post }: Props) => {
             <LikeButton post={post} />
             <PostCommentsToggle
               post={post}
-              token={token}
-              username={auth.username}
               commentsDialog={commentsDialog}
               setCommentsDialog={setCommentsDialog}
             />
