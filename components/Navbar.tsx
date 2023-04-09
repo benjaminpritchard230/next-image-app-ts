@@ -298,10 +298,8 @@ const Navbar = (props: Props) => {
       </Container>
       {token.length > 0 ? (
         <NotificationsPopper
-          handleOpenNotificationsMenu={handleOpenNotificationsMenu}
           handleCloseNotificationsMenu={handleCloseNotificationsMenu}
           anchorElNotifications={anchorElNotifications}
-          setAnchorElNotifications={setAnchorElNotifications}
         />
       ) : null}
     </AppBar>
