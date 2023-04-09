@@ -72,6 +72,7 @@ function MyDropzone({ inputProps }) {
           onLoad={() => {
             URL.revokeObjectURL(file.preview);
           }}
+          alt="Preview of uploaded image"
         />
       </div>
     </div>
@@ -79,7 +80,7 @@ function MyDropzone({ inputProps }) {
 
   useEffect(() => {
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, []);
+  }, [files]);
 
   return (
     <section className="dropzone-container">
