@@ -11,7 +11,6 @@ const TogglePrivateSwitch = ({ post }: Props) => {
   const handleChange = async () => {
     try {
       await makePrivate(post).unwrap();
-      console.log(post.public);
     } catch (err) {
       console.log(err);
     }
