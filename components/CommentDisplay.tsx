@@ -33,7 +33,7 @@ const CommentDisplay = ({ comment }: Props) => {
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
           <Avatar
-            alt="Remy Sharp"
+            alt={userInfoData?.username}
             src={`https://escooter230.pythonanywhere.com/${userInfoData?.profile_image}`}
           />
         </Grid>
