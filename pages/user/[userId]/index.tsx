@@ -46,7 +46,7 @@ const UserDetail = (props: Props) => {
     if (userId != undefined && (userId as string) === auth.id.toString()) {
       router.push("/my-profile");
     }
-  }, []);
+  }, [auth.id, router, userId]);
 
   const displayImagePosts = () => {
     if (userPostData != undefined) {

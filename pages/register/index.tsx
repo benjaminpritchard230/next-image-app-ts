@@ -53,7 +53,6 @@ const RegisterPage = (props: Props) => {
     try {
       const user = await register(formState).unwrap();
       router.push("/login");
-      console.log(user, "user");
     } catch (err) {
       console.log(err);
     }
