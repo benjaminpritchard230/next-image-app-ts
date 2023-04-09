@@ -92,8 +92,7 @@ const Navbar = (props: Props) => {
     if (!auth.remember) {
       dispatch(setCredentials({ id: "", token: "" }));
     }
-    console.log("remount navbar");
-  }, []);
+  }, [auth.remember, dispatch]);
 
   return (
     <AppBar position="sticky">
