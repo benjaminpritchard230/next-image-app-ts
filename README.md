@@ -1,38 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# README
+## Overview
+Welcome to my social media platform, where users can create an account and share their own images. Users can also view other users' images, like and comment on them, and receive notifications when someone likes or comments on their posts. Additionally, users can create a profile with an avatar and an "about me" section, view other users' profiles, and follow other users.
+
+## Technologies Used
+This website was built using the following technologies:
+
+## Next.js: A popular React framework that simplifies the creation of different routes on the website.
+MUI: A React UI library that provides many useful components for building complex websites with a lot of user interaction.
+Typescript: Used to ensure type safety in handling data returned from the backend.
+RTK Query: A powerful data fetching and mutation management library that was used to handle data fetching and mutations on the website.
+The backend of the website was written in Python using the Django framework and was hosted on PythonAnywhere, a cloud-based platform that makes it easy to deploy, run, and scale Python applications.
 
 ## Getting Started
+To get started with the website, simply create an account and start sharing your images. You can also view other users' images, like and comment on them, and follow other users.
 
-First, run the development server:
+## Contributing
+I welcome contributions to my website. If you find a bug or have a feature request, please open an issue on our GitHub repository. If you would like to contribute code, please fork the repository, make your changes, and submit a pull request.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## License
+This project is licensed under the MIT License.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+If you have any questions or concerns, please contact us at benpritchard3@gmail.com.
