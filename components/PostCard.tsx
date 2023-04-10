@@ -6,6 +6,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Stack,
   Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -85,7 +86,12 @@ const PostCard = ({ post }: Props) => {
               <ReactTimeAgo date={Date.parse(post.created_on)} />
             </Typography>
           </CardContent>
-          <CardActions>
+          <Stack
+            direction="row"
+            justifyContent="left"
+            alignItems="center"
+            spacing={0.5}
+          >
             <LikeButton post={post} />
             <PostCommentsToggle
               post={post}
@@ -94,7 +100,7 @@ const PostCard = ({ post }: Props) => {
             />
             {post.user === auth.id ? <TogglePrivateSwitch post={post} /> : null}
             {post.user === auth.id ? <DeletePostButton post={post} /> : null}
-          </CardActions>
+          </Stack>
         </Card>
       </Item>
       <CommentsDialog
