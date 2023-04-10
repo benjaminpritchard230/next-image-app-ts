@@ -57,9 +57,7 @@ const PublicPostsTopCard = ({
                   />
                 }
                 label={
-                  subscriptionsOnly
-                    ? "Showing posts from subscriptions only"
-                    : "Showing posts from everyone"
+                  subscriptionsOnly ? "Showing subscriptions" : "Showing all"
                 }
                 labelPlacement="start"
               />
