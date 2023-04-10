@@ -1,3 +1,4 @@
+import PaginationCard from "@/components/PaginationCard";
 import PostCard from "@/components/PostCard";
 import PublicPostsTopCard from "@/components/PublicPostsTopCard";
 import {
@@ -79,6 +80,13 @@ const Homepage = ({}: Props) => {
           setSubscriptionsOnly={setSubscriptionsOnly}
         />
       ) : null}
+      {!subscriptionsOnly ? (
+        <PaginationCard
+          subscriptionsOnly={subscriptionsOnly}
+          pageNumber={parseInt(pageNumber as string)}
+          count={count}
+        />
+      ) : null}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={0}>
           {subscriptionsOnly
@@ -86,19 +94,12 @@ const Homepage = ({}: Props) => {
             : displayAllImagePosts()}
         </Grid>
       </Box>
+
       {!subscriptionsOnly ? (
-        <Pagination
-          sx={{
-            margin: 0,
-            top: "auto",
-            right: "46%",
-            bottom: 35,
-            position: "fixed",
-          }}
+        <PaginationCard
+          subscriptionsOnly={subscriptionsOnly}
+          pageNumber={parseInt(pageNumber as string)}
           count={count}
-          page={parseInt(pageNumber as string)}
-          color="primary"
-          onChange={handlePageChange}
         />
       ) : null}
     </>
