@@ -1,6 +1,6 @@
 import { IPost } from "@/types/posts";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Chip } from "@mui/material";
+import { Chip, IconButton } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { useDeleteMutation } from "../features/api/apiSlice";
 
@@ -20,14 +20,16 @@ const DeletePostButton = ({ post }: Props) => {
   };
   return (
     <Tooltip title="Delete" placement="top">
-      <Chip
-        icon={<DeleteIcon />}
-        variant="outlined"
-        label="Delete"
+      <IconButton
+        color="primary"
+        aria-label="delete post"
+        component="label"
         onClick={() => {
           handleDeleteClick();
         }}
-      />
+      >
+        <DeleteIcon />
+      </IconButton>
     </Tooltip>
   );
 };
