@@ -2,6 +2,7 @@ import MyDropzone from "@/components/MyDropzone";
 import { openClose } from "@/features/dialog/newPostDialogSlice";
 import { RootState } from "@/store/store";
 import CloseIcon from "@mui/icons-material/Close";
+import { CircularProgress } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,6 +11,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
+import { green } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { useNewPostMutation } from "../features/api/apiSlice";
 
@@ -88,6 +90,20 @@ const NewPostDialog = (props: Props) => {
           </DialogContent>
           <DialogActions>
             <Button type="submit">Create post</Button>
+            {isLoading && (
+              <CircularProgress
+                size={24}
+                sx={{
+                  color: green[500],
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  marginTop: "-12px",
+                  marginLeft: "-12px",
+                }}
+              />
+            )}
+
             <Button
               onClick={() => {
                 handleClose();
