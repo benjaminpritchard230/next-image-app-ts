@@ -1,5 +1,12 @@
 import { IPost } from "@/types/posts";
-import { FormControlLabel, FormGroup } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import {
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import Switch from "@mui/material/Switch";
 import { useMakePrivateMutation } from "../features/api/apiSlice";
 
@@ -17,18 +24,33 @@ const TogglePrivateSwitch = ({ post }: Props) => {
   };
 
   return (
-    <FormGroup>
-      <FormControlLabel
-        label={"Private"}
-        control={
-          <Switch
-            checked={post.public ? false : true}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        }
-      ></FormControlLabel>
-    </FormGroup>
+    // <FormGroup>
+    //   <FormControlLabel
+    //     label={"Private"}
+    //     control={
+    //       <Switch
+    //         checked={post.public ? false : true}
+    //         onChange={handleChange}
+    //         inputProps={{ "aria-label": "controlled" }}
+    //       />
+    //     }
+    //   ></FormControlLabel>
+    // </FormGroup>
+    <Tooltip
+      title={post.public ? "Make post private" : "Make post public"}
+      placement="top"
+    >
+      <IconButton
+        color="primary"
+        aria-label="toggle public/private"
+        component="label"
+        onClick={() => {
+          handleChange();
+        }}
+      >
+        {post.public ? <VisibilityOffIcon /> : <VisibilityIcon />}
+      </IconButton>
+    </Tooltip>
   );
 };
 
