@@ -27,9 +27,12 @@ const NewPostDialog = (props: Props) => {
     dispatch(openClose());
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
+    const data = new FormData(e.currentTarget);
+    console.log(data, "data");
+    data.append("public", "true");
+
     try {
       await newPost(data).unwrap();
     } catch (err) {
