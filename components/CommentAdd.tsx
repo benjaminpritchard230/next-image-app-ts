@@ -21,6 +21,7 @@ interface ITarget {
 
 const CommentAdd = ({ post, handleClose }: Props) => {
   const auth = useSelector((state: RootState) => state.auth);
+  const token = auth.token;
   const [addComment, { isLoading }] = useAddCommentMutation();
 
   const [formState, setFormState] = useState({ body: "" });
@@ -29,12 +30,10 @@ const CommentAdd = ({ post, handleClose }: Props) => {
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const id = post.id;
-
   const handleAddCommentClick = async () => {
     if (auth.token.length > 0) {
       try {
-        await addComment({ id: id, body: formState }).unwrap();
+        await addComment({ id: post.id, body: formState }).unwrap();
 
         setFormState({ body: "" });
       } catch (err) {
@@ -59,13 +58,16 @@ const CommentAdd = ({ post, handleClose }: Props) => {
             minRows={4}
             id="body"
             name="body"
-            label="Enter comment..."
+            label={
+              token.length > 0 ? "Enter comment..." : "Log in to post a comment"
+            }
             type="text"
             value={formState.body}
             onChange={handleChange}
           />
           <Button
             size="large"
+            disabled={isLoading || token.length === 0 ? true : false}
             // sx={{ mt: 3, mb: 2 }}
             onClick={() => {
               if (formState.body.length > 0) {
